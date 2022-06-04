@@ -2,18 +2,24 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the fcitx5-bamboo package.
 #
+# Translators:
+# Dmitry <dmitrydmitry761@gmail.com>, 2022
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
 "POT-Creation-Date: 2022-06-04 20:24+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: LANG\n"
+"PO-Revision-Date: 2022-06-04 06:04+0000\n"
+"Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2022\n"
+"Language-Team: Russian (https://www.transifex.com/fcitx/teams/12005/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: src/bambooconfig.h:119
 msgid "Allow type with more freedom"
@@ -21,75 +27,75 @@ msgstr ""
 
 #: src/bambooconfig.h:114
 msgid "Auto restore keys with invalid words"
-msgstr ""
+msgstr "Автоматически восстанавливать клавиши при некорректных словах"
 
 #: org.fcitx.Fcitx5.Addon.Bamboo.metainfo.xml.in:7 src/bamboo.conf.in:3
 msgid "Bamboo"
-msgstr ""
+msgstr "Bamboo"
 
 #: src/bamboo-addon.conf.in.in:3
 msgid "Bamboo Wrapper For Fcitx"
-msgstr ""
+msgstr "Обёртка Bamboo для Fcitx"
 
 #: src/bambooconfig.h:111
 msgid "Capitalize Macro"
-msgstr ""
+msgstr "Использовать макрос с заглавной буквы"
 
 #: src/bambooconfig.h:87 src/bambooconfig.h:121
 msgid "Custom Keymap"
-msgstr ""
+msgstr "Пользовательская раскладка"
 
 #: src/bambooconfig.h:110
 msgid "Enable Macro"
-msgstr ""
+msgstr "Включить макрос"
 
 #: src/bambooconfig.h:109
 msgid "Enable spell check"
-msgstr ""
+msgstr "Включить проверку правописания"
 
 #: src/bambooconfig.h:105 src/bamboo.cpp:225
 msgid "Input Method"
-msgstr ""
+msgstr "Метод ввода"
 
 #: src/bambooconfig.h:68
 msgid "Key"
-msgstr ""
+msgstr "Клавиша"
 
 #: src/bambooconfig.h:76 src/bamboo.cpp:293
 msgid "Macro"
-msgstr ""
+msgstr "Макрос"
 
 #: src/bamboo.cpp:449
 msgid "Macro Disabled"
-msgstr ""
+msgstr "Макрос отключен"
 
 #: src/bamboo.cpp:448
 msgid "Macro Enabled"
-msgstr ""
+msgstr "Макрос включен"
 
 #: src/bambooconfig.h:108
 msgid "Output Charset"
-msgstr ""
+msgstr "Кодировка на выходе"
 
 #: src/bamboo.cpp:252
 msgid "Output charset"
-msgstr ""
+msgstr "Выходная кодировка"
 
 #: src/bambooconfig.h:100
 msgid "Restore Key Stroke"
-msgstr ""
+msgstr "Восстановить нажатие клавиши"
 
 #: src/bamboo.cpp:440
 msgid "Spell Check Disabled"
-msgstr ""
+msgstr "Проверка орфографии отключена"
 
 #: src/bamboo.cpp:439
 msgid "Spell Check Enabled"
-msgstr ""
+msgstr "Проверка орфографии включена"
 
 #: src/bamboo.cpp:281
 msgid "Spell check"
-msgstr ""
+msgstr "Проверка орфографии"
 
 #: src/bambooconfig.h:117
 msgid "Use oà, _uý (instead of òa, úy)"
@@ -97,8 +103,8 @@ msgstr ""
 
 #: src/bambooconfig.h:69
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
 #: org.fcitx.Fcitx5.Addon.Bamboo.metainfo.xml.in:8
 msgid "Vietnamese input method"
-msgstr ""
+msgstr "Вьетнамский метод ввода"
