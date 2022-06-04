@@ -18,6 +18,8 @@ import (
 			bool autoCapitalizeMacro;
 			bool spellCheckWithDicts;
 			const char *outputCharset;
+			bool modernStyle;
+			bool freeMarking;
 		} FcitxBambooEngineOption;
 	*/
 	"C"
@@ -89,6 +91,19 @@ func EngineSetOption(engine uintptr, option *C.FcitxBambooEngineOption) {
 	bambooEngine.autoCapitalizeMacro = bool(option.autoCapitalizeMacro)
 	bambooEngine.spellCheckWithDicts = bool(option.spellCheckWithDicts)
 	bambooEngine.outputCharset = C.GoString(option.outputCharset)
+	flags := bamboo.EstdFlags
+	if option.modernStyle {
+		flags &= ^bamboo.EstdToneStyle
+	} else {
+		flags |= bamboo.EstdToneStyle
+	}
+
+	if option.freeMarking {
+		flags |= bamboo.EfreeToneMarking
+	} else {
+		flags &= ^bamboo.EfreeToneMarking
+	}
+	bambooEngine.preeditor.SetFlag(flags)
 }
 
 //export NewEngine

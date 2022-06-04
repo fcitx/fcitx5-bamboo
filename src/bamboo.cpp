@@ -92,7 +92,10 @@ public:
             .macroEnabled = *engine_->config().macro,
             .autoCapitalizeMacro = *engine_->config().capitalizeMacro,
             .spellCheckWithDicts = *engine_->config().spellCheck,
-            .outputCharset = engine_->config().outputCharset->data()};
+            .outputCharset = engine_->config().outputCharset->data(),
+            .modernStyle = *engine_->config().modernStyle,
+            .freeMarking = *engine_->config().freeMarking,
+        };
         EngineSetOption(bambooEngine_.handle(), &option);
     }
 

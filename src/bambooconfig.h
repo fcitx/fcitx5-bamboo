@@ -113,6 +113,10 @@ FCITX_CONFIGURATION(
     Option<bool> autoNonVnRestore{this, "AutoNonVnRestore",
                                   _("Auto restore keys with invalid words"),
                                   true};
+    Option<bool> modernStyle{this, "ModernStyle",
+                             _("Use oà, _uý (instead of òa, úy)"), false};
+    Option<bool> freeMarking{this, "FreeMarking",
+                             _("Allow type with more freedom"), true};
     SubConfigOption punctuationMap{
         this, "CustomKeymap", _("Custom Keymap"),
         "fcitx://config/addon/bamboo/custom_keymap"};);
