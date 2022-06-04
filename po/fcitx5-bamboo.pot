@@ -1,0 +1,91 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the fcitx5-unikey package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fcitx5-unikey\n"
+"Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
+"POT-Creation-Date: 2020-11-02 15:55-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: LANG\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. i18n: file: macro-editor/editor.ui:36
+#. i18n: ectx: property (text), widget (QPushButton, addButton)
+#: rc.cpp:6 rc.cpp:33
+#, kde-format
+msgid "&Add"
+msgstr ""
+
+#. i18n: file: macro-editor/editor.ui:47
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: rc.cpp:9 rc.cpp:36
+#, kde-format
+msgid "&Delete"
+msgstr ""
+
+#. i18n: file: macro-editor/editor.ui:87
+#. i18n: ectx: property (text), widget (QPushButton, exportButton)
+#: rc.cpp:18 rc.cpp:45
+#, kde-format
+msgid "&Export"
+msgstr ""
+
+#. i18n: file: macro-editor/editor.ui:76
+#. i18n: ectx: property (text), widget (QPushButton, importButton)
+#: rc.cpp:15 rc.cpp:42
+#, kde-format
+msgid "&Import"
+msgstr ""
+
+#. i18n: file: macro-editor/editor.ui:58
+#. i18n: ectx: property (text), widget (QPushButton, clearButton)
+#: rc.cpp:12 rc.cpp:39
+#, kde-format
+msgid "De&lete All"
+msgstr ""
+
+#. i18n: file: macro-editor/dialog.ui:14
+#. i18n: ectx: property (windowTitle), widget (QDialog, Dialog)
+#: rc.cpp:21 rc.cpp:48
+#, kde-format
+msgid "Dialog"
+msgstr ""
+
+#. i18n: file: macro-editor/dialog.ui:32
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:27 rc.cpp:54
+#, kde-format
+msgid "Macro:"
+msgstr ""
+
+#: org.fcitx.fcitx5-unikey.metainfo.xml.in:7 src/unikey.conf.in:3
+msgid "Unikey"
+msgstr ""
+
+#. i18n: file: macro-editor/editor.ui:14
+#. i18n: ectx: property (windowTitle), widget (QWidget, Editor)
+#: rc.cpp:3 rc.cpp:30
+#, kde-format
+msgid "Unikey Macro Editor"
+msgstr ""
+
+#: src/unikey-addon.conf.in:3
+msgid "Unikey Wrapper For Fcitx"
+msgstr ""
+
+#: org.fcitx.fcitx5-unikey.metainfo.xml.in:8
+msgid "Vietnamese input method"
+msgstr ""
+
+#. i18n: file: macro-editor/dialog.ui:25
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:24 rc.cpp:51
+#, kde-format
+msgid "Word:"
+msgstr ""
