@@ -64,6 +64,8 @@ public:
     void activate(const InputMethodEntry &entry,
                   InputContextEvent &event) override;
     void keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) override;
+    void reset(const InputMethodEntry &entry,
+               InputContextEvent &event) override;
 
     const auto &config() const { return config_; }
     const auto &customKeymap() const { return customKeymap_; }

@@ -155,13 +155,28 @@ public:
     }
 
     void reset() {
-        if (!bambooEngine_) {
-            return;
-        }
         ic_->inputPanel().reset();
+        if (bambooEngine_) {
+            ResetEngine(bambooEngine_.handle());
+        }
         ic_->updateUserInterface(UserInterfaceComponent::InputPanel);
         ic_->updatePreedit();
-        ResetEngine(bambooEngine_.handle());
+    }
+
+    void commitBuffer() {
+        ic_->inputPanel().reset();
+        if (bambooEngine_) {
+            // The reason that we do not commit here is we want to force the
+            // behavior. When client get unfocused, the framework will try to
+            // commit the string.
+            UniqueCPtr<char> preedit(EnginePullPreedit(bambooEngine_.handle()));
+            if (preedit && preedit.get()[0]) {
+                ic_->commitString(preedit.get());
+            }
+            ResetEngine(bambooEngine_.handle());
+        }
+        ic_->updateUserInterface(UserInterfaceComponent::InputPanel);
+        ic_->updatePreedit();
     }
 
 private:
@@ -374,6 +389,18 @@ void BambooEngine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
     auto state = keyEvent.inputContext()->propertyFor(&factory_);
 
     state->keyEvent(keyEvent);
+}
+
+void BambooEngine::reset(const InputMethodEntry &entry,
+                         InputContextEvent &event) {
+    FCITX_UNUSED(entry);
+    auto state = event.inputContext()->propertyFor(&factory_);
+
+    if (event.type() != EventType::InputContextFocusOut) {
+        state->commitBuffer();
+    } else {
+        state->reset();
+    }
 }
 
 void BambooEngine::refreshEngine() {
