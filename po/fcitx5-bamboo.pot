@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the fcitx5-unikey package.
+# This file is distributed under the same license as the fcitx5-bamboo package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: fcitx5-unikey\n"
+"Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2020-11-02 15:55-0800\n"
+"POT-Creation-Date: 2022-06-04 06:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,77 +15,82 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. i18n: file: macro-editor/editor.ui:36
-#. i18n: ectx: property (text), widget (QPushButton, addButton)
-#: rc.cpp:6 rc.cpp:33
-#, kde-format
-msgid "&Add"
+#: src/bambooconfig.h:114
+msgid "Auto restore keys with invalid words"
 msgstr ""
 
-#. i18n: file: macro-editor/editor.ui:47
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: rc.cpp:9 rc.cpp:36
-#, kde-format
-msgid "&Delete"
+#: org.fcitx.Fcitx5.Addon.Bamboo.metainfo.xml.in:7 src/bamboo.conf.in:3
+msgid "Bamboo"
 msgstr ""
 
-#. i18n: file: macro-editor/editor.ui:87
-#. i18n: ectx: property (text), widget (QPushButton, exportButton)
-#: rc.cpp:18 rc.cpp:45
-#, kde-format
-msgid "&Export"
+#: src/bamboo-addon.conf.in.in:3
+msgid "Bamboo Wrapper For Fcitx"
 msgstr ""
 
-#. i18n: file: macro-editor/editor.ui:76
-#. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:15 rc.cpp:42
-#, kde-format
-msgid "&Import"
+#: src/bambooconfig.h:111
+msgid "Capitalize Macro"
 msgstr ""
 
-#. i18n: file: macro-editor/editor.ui:58
-#. i18n: ectx: property (text), widget (QPushButton, clearButton)
-#: rc.cpp:12 rc.cpp:39
-#, kde-format
-msgid "De&lete All"
+#: src/bambooconfig.h:87 src/bambooconfig.h:117
+msgid "Custom Keymap"
 msgstr ""
 
-#. i18n: file: macro-editor/dialog.ui:14
-#. i18n: ectx: property (windowTitle), widget (QDialog, Dialog)
-#: rc.cpp:21 rc.cpp:48
-#, kde-format
-msgid "Dialog"
+#: src/bambooconfig.h:110
+msgid "Enable Macro"
 msgstr ""
 
-#. i18n: file: macro-editor/dialog.ui:32
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:27 rc.cpp:54
-#, kde-format
-msgid "Macro:"
+#: src/bambooconfig.h:109
+msgid "Enable spell check"
 msgstr ""
 
-#: org.fcitx.fcitx5-unikey.metainfo.xml.in:7 src/unikey.conf.in:3
-msgid "Unikey"
+#: src/bambooconfig.h:105 src/bamboo.cpp:207
+msgid "Input Method"
 msgstr ""
 
-#. i18n: file: macro-editor/editor.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, Editor)
-#: rc.cpp:3 rc.cpp:30
-#, kde-format
-msgid "Unikey Macro Editor"
+#: src/bambooconfig.h:68
+msgid "Key"
 msgstr ""
 
-#: src/unikey-addon.conf.in:3
-msgid "Unikey Wrapper For Fcitx"
+#: src/bambooconfig.h:76 src/bamboo.cpp:275
+msgid "Macro"
 msgstr ""
 
-#: org.fcitx.fcitx5-unikey.metainfo.xml.in:8
+#: src/bamboo.cpp:414
+msgid "Macro Disabled"
+msgstr ""
+
+#: src/bamboo.cpp:413
+msgid "Macro Enabled"
+msgstr ""
+
+#: src/bambooconfig.h:108
+msgid "Output Charset"
+msgstr ""
+
+#: src/bamboo.cpp:234
+msgid "Output charset"
+msgstr ""
+
+#: src/bambooconfig.h:100
+msgid "Restore Key Stroke"
+msgstr ""
+
+#: src/bamboo.cpp:405
+msgid "Spell Check Disabled"
+msgstr ""
+
+#: src/bamboo.cpp:404
+msgid "Spell Check Enabled"
+msgstr ""
+
+#: src/bamboo.cpp:263
+msgid "Spell check"
+msgstr ""
+
+#: src/bambooconfig.h:69
+msgid "Value"
+msgstr ""
+
+#: org.fcitx.Fcitx5.Addon.Bamboo.metainfo.xml.in:8
 msgid "Vietnamese input method"
-msgstr ""
-
-#. i18n: file: macro-editor/dialog.ui:25
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:24 rc.cpp:51
-#, kde-format
-msgid "Word:"
 msgstr ""
