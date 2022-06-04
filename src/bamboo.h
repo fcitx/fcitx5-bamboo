@@ -77,6 +77,8 @@ public:
 
     void setSubConfig(const std::string &path,
                       const RawConfig &config) override;
+    std::string subMode(const fcitx::InputMethodEntry &entry,
+                        fcitx::InputContext &inputContext) override;
 
     uintptr_t dictionary() { return dictionary_.handle(); }
     uintptr_t macroTable() {

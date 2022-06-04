@@ -344,6 +344,11 @@ void BambooEngine::setSubConfig(const std::string &path,
     }
 }
 
+std::string BambooEngine::subMode(const fcitx::InputMethodEntry &,
+                                  fcitx::InputContext &) {
+    return *config_.inputMethod;
+}
+
 void BambooEngine::activate(const InputMethodEntry &entry,
                             InputContextEvent &event) {
     FCITX_UNUSED(entry);
