@@ -106,7 +106,7 @@ func NewEngine(name *C.cchar, dictHandle uintptr, tableHandle uintptr) uintptr {
 	imName := C.GoString(name)
 
 	var engine = &FcitxBambooEngine{
-		preeditor:               bamboo.NewEngine(bamboo.ParseInputMethod(bamboo.InputMethodDefinitions, imName), 0),
+		preeditor:               bamboo.NewEngine(bamboo.ParseInputMethod(bamboo.InputMethodDefinitions, imName), bamboo.EstdFlags),
 		macroTable:              table,
 		dictionary:              *dict,
 		autoNonVnRestore:        true,
@@ -144,7 +144,7 @@ func NewCustomEngine(definition **C.char, dictHandle uintptr, tableHandle uintpt
 	}
 
 	var engine = &FcitxBambooEngine{
-		preeditor:               bamboo.NewEngine(bamboo.ParseInputMethod(definitions, "Custom"), 0),
+		preeditor:               bamboo.NewEngine(bamboo.ParseInputMethod(definitions, "Custom"), bamboo.EstdFlags),
 		macroTable:              table,
 		dictionary:              *dict,
 		autoNonVnRestore:        true,
