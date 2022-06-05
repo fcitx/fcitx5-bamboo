@@ -169,11 +169,11 @@ public:
             // The reason that we do not commit here is we want to force the
             // behavior. When client get unfocused, the framework will try to
             // commit the string.
-            UniqueCPtr<char> preedit(EnginePullPreedit(bambooEngine_.handle()));
-            if (preedit && preedit.get()[0]) {
-                ic_->commitString(preedit.get());
+            EngineCommitPreedit(bambooEngine_.handle());
+            UniqueCPtr<char> commit(EnginePullCommit(bambooEngine_.handle()));
+            if (commit && commit.get()[0]) {
+                ic_->commitString(commit.get());
             }
-            ResetEngine(bambooEngine_.handle());
         }
         ic_->updateUserInterface(UserInterfaceComponent::InputPanel);
         ic_->updatePreedit();

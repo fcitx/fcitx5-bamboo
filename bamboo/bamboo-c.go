@@ -68,6 +68,15 @@ func EnginePullPreedit(engine uintptr) *C.char {
 	return C.CString(bambooEngine.preeditText)
 }
 
+//export EngineCommitPreedit
+func EngineCommitPreedit(engine uintptr) {
+	bambooEngine, ok := cgo.Handle(engine).Value().(*FcitxBambooEngine)
+	if !ok {
+		return
+	}
+	bambooEngine.commitPreeditAndReset(bambooEngine.getPreeditString())
+}
+
 //export EnginePullCommit
 func EnginePullCommit(engine uintptr) *C.char {
 	bambooEngine, ok := cgo.Handle(engine).Value().(*FcitxBambooEngine)
@@ -203,7 +212,7 @@ func ResetEngine(engine uintptr) {
 	if !ok {
 		return
 	}
-	bambooEngine.preeditor.Reset()
+	bambooEngine.commitPreeditAndReset("")
 }
 
 func toCStringArray(strs []string) **C.char {
