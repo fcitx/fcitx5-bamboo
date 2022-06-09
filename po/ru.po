@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-06-04 20:24+0000\n"
+"POT-Creation-Date: 2022-06-09 20:24+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/fcitx/teams/12005/ru/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/bambooconfig.h:119
 msgid "Allow type with more freedom"
-msgstr ""
+msgstr "Разрешить ввод с большей свободой"
 
 #: src/bambooconfig.h:114
 msgid "Auto restore keys with invalid words"
@@ -99,7 +99,7 @@ msgstr "Проверка орфографии"
 
 #: src/bambooconfig.h:117
 msgid "Use oà, _uý (instead of òa, úy)"
-msgstr ""
+msgstr "Используйте oà, _uý (вместо òa, úy)"
 
 #: src/bambooconfig.h:69
 msgid "Value"
