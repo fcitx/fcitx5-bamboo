@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-06-05 20:24+0000\n"
+"POT-Creation-Date: 2022-06-20 20:24+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (https://www.transifex.com/fcitx/teams/12005/ko/)\n"
@@ -37,23 +37,23 @@ msgstr "Fcitx용 Bamboo 래퍼"
 
 #: src/bambooconfig.h:111
 msgid "Capitalize Macro"
-msgstr ""
+msgstr "매크로 대문자화"
 
 #: src/bambooconfig.h:87 src/bambooconfig.h:121
 msgid "Custom Keymap"
-msgstr ""
+msgstr "사용자 지정 키맵"
 
 #: src/bambooconfig.h:110
 msgid "Enable Macro"
-msgstr ""
+msgstr "매크로 활성화"
 
 #: src/bambooconfig.h:109
 msgid "Enable spell check"
-msgstr ""
+msgstr "철자 검사 활성화"
 
 #: src/bambooconfig.h:105 src/bamboo.cpp:225
 msgid "Input Method"
-msgstr ""
+msgstr "입력기"
 
 #: src/bambooconfig.h:68
 msgid "Key"
@@ -65,31 +65,31 @@ msgstr "매크로"
 
 #: src/bamboo.cpp:449
 msgid "Macro Disabled"
-msgstr ""
+msgstr "매크로 비활성화됨"
 
 #: src/bamboo.cpp:448
 msgid "Macro Enabled"
-msgstr ""
+msgstr "매크로 활성화됨"
 
 #: src/bambooconfig.h:108
 msgid "Output Charset"
-msgstr ""
+msgstr "출력 문자셋"
 
 #: src/bamboo.cpp:252
 msgid "Output charset"
-msgstr ""
+msgstr "출력 문자셋"
 
 #: src/bambooconfig.h:100
 msgid "Restore Key Stroke"
-msgstr ""
+msgstr "키 입력 복원"
 
 #: src/bamboo.cpp:440
 msgid "Spell Check Disabled"
-msgstr ""
+msgstr "철자 검사 비활성화됨"
 
 #: src/bamboo.cpp:439
 msgid "Spell Check Enabled"
-msgstr ""
+msgstr "철자 검사 활성화됨"
 
 #: src/bamboo.cpp:281
 msgid "Spell check"
