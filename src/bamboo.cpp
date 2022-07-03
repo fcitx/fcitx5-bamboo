@@ -6,9 +6,6 @@
  */
 
 #include "bamboo.h"
-#include <fcntl.h>
-#include <optional>
-#include <stdexcept>
 #include <fcitx-config/iniparser.h>
 #include <fcitx-utils/charutils.h>
 #include <fcitx-utils/keysymgen.h>
@@ -22,6 +19,9 @@
 #include <fcitx/statusarea.h>
 #include <fcitx/userinterface.h>
 #include <fcitx/userinterfacemanager.h>
+#include <fcntl.h>
+#include <optional>
+#include <stdexcept>
 
 namespace fcitx {
 

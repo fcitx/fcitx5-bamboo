@@ -7,7 +7,8 @@
 #ifndef _FCITX5_BAMBOO_BAMBOO_H_
 #define _FCITX5_BAMBOO_BAMBOO_H_
 
-#include <string>
+#include "bamboo-core.h"
+#include "bambooconfig.h"
 #include <fcitx-config/iniparser.h>
 #include <fcitx-utils/i18n.h>
 #include <fcitx/action.h>
@@ -16,8 +17,7 @@
 #include <fcitx/inputcontextproperty.h>
 #include <fcitx/inputmethodengine.h>
 #include <fcitx/instance.h>
-#include "bamboo-core.h"
-#include "bambooconfig.h"
+#include <string>
 
 namespace fcitx {
 
