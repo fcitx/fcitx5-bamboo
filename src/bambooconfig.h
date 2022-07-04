@@ -10,6 +10,8 @@
 #include <fcitx-config/configuration.h>
 #include <fcitx-config/option.h>
 #include <fcitx-utils/i18n.h>
+#include <fcitx-utils/stringutils.h>
+
 namespace fcitx {
 
 struct InputMethodConstrain;
