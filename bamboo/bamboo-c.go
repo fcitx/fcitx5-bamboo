@@ -159,7 +159,7 @@ func NewCustomEngine(definition **C.char, dictHandle uintptr, tableHandle uintpt
 		return 0
 	}
 	var definitions = map[string]bamboo.InputMethodDefinition{}
-	def := (*[1<<30 - 1]*C.char)(unsafe.Pointer(definition))
+	def := (*[1<<20 - 1]*C.char)(unsafe.Pointer(definition))
 
 	i := 0
 	for def[i] != nil {
@@ -191,7 +191,7 @@ func NewMacroTable(definition **C.char) uintptr {
 	var table = &MacroTable{
 		mTable: map[string]string{},
 	}
-	def := (*[1<<30 - 1]*C.char)(unsafe.Pointer(definition))
+	def := (*[1<<20 - 1]*C.char)(unsafe.Pointer(definition))
 	i := 0
 	for def[i] != nil {
 		table.mTable[C.GoString(def[i])] = C.GoString(def[i+1])
@@ -219,7 +219,7 @@ func toCStringArray(strs []string) **C.char {
 
 	array := C.malloc(C.size_t(len(strs)+1) * C.size_t(unsafe.Sizeof(uintptr(0))))
 	// convert the C array to a Go Array so we can index it
-	a := (*[1<<30 - 1]*C.char)(array)
+	a := (*[1<<20 - 1]*C.char)(array)
 
 	for idx, substring := range strs {
 		a[idx] = C.CString(substring)
