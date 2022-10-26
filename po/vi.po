@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-10-25 20:25+0000\n"
+"POT-Creation-Date: 2022-10-26 20:25+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: Zen Fas, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/fcitx/teams/12005/vi/)\n"
@@ -65,7 +65,7 @@ msgstr "Gõ tắt"
 
 #: src/bamboo.cpp:449
 msgid "Macro Disabled"
-msgstr "Tắt gõ bị tắt"
+msgstr "Gõ tắt bị tắt"
 
 #: src/bamboo.cpp:448
 msgid "Macro Enabled"
