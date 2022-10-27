@@ -119,9 +119,8 @@ FCITX_CONFIGURATION(
                              _("Use oà, _uý (instead of òa, úy)"), false};
     Option<bool> freeMarking{this, "FreeMarking",
                              _("Allow type with more freedom"), true};
-    SubConfigOption punctuationMap{
-        this, "CustomKeymap", _("Custom Keymap"),
-        "fcitx://config/addon/bamboo/custom_keymap"};);
+    SubConfigOption custumKeymap{this, "CustomKeymap", _("Custom Keymap"),
+                                 "fcitx://config/addon/bamboo/custom_keymap"};);
 } // namespace fcitx
 
 #endif

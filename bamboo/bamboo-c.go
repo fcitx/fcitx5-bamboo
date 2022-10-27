@@ -158,7 +158,9 @@ func NewCustomEngine(definition **C.char, dictHandle uintptr, tableHandle uintpt
 	if !ok {
 		return 0
 	}
-	var definitions = map[string]bamboo.InputMethodDefinition{}
+	var definitions = map[string]bamboo.InputMethodDefinition{
+		"Custom": map[string]string{},
+	}
 	def := (*[1<<20 - 1]*C.char)(unsafe.Pointer(definition))
 
 	i := 0

@@ -69,11 +69,14 @@ public:
             std::vector<char *> charArray;
             for (const auto &keymap : *engine_->customKeymap().customKeymap) {
                 charArray.push_back(const_cast<char *>(keymap.key->data()));
+                FCITX_INFO() << charArray.back();
                 charArray.push_back(const_cast<char *>(keymap.value->data()));
+                FCITX_INFO() << charArray.back();
             }
             charArray.push_back(nullptr);
-            bambooEngine_.reset(
-                NewCustomEngine(charArray.data(), engine_->dictionary(), 0));
+            bambooEngine_.reset(NewCustomEngine(charArray.data(),
+                                                engine_->dictionary(),
+                                                engine_->macroTable()));
         } else {
             bambooEngine_.reset(NewEngine(engine_->config().inputMethod->data(),
                                           engine_->dictionary(),
@@ -357,6 +360,7 @@ void BambooEngine::setSubConfig(const std::string &path,
         if (auto iter = macroTables_.find(imName); iter != macroTables_.end()) {
             iter->second.load(config, true);
             safeSaveAsIni(iter->second, macroFile(imName));
+            macroTableObject_[imName].reset(newMacroTable(iter->second));
             refreshEngine();
         }
     }
