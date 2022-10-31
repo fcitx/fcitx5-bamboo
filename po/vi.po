@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-10-26 20:25+0000\n"
+"POT-Creation-Date: 2022-10-31 20:25+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: Zen Fas, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/fcitx/teams/12005/vi/)\n"
@@ -39,7 +39,7 @@ msgstr "Bộ gõ Bamboo cho Fcitx"
 msgid "Capitalize Macro"
 msgstr "Gõ tắt chữ hoa"
 
-#: src/bambooconfig.h:89 src/bambooconfig.h:123
+#: src/bambooconfig.h:89 src/bambooconfig.h:122
 msgid "Custom Keymap"
 msgstr "Bàn phím tùy chỉnh"
 
@@ -51,7 +51,7 @@ msgstr "Cho phép gõ tắt"
 msgid "Enable spell check"
 msgstr "Bật kiểm tra chính tả"
 
-#: src/bambooconfig.h:107 src/bamboo.cpp:225
+#: src/bambooconfig.h:107 src/bamboo.cpp:228
 msgid "Input Method"
 msgstr "Kiểu gõ"
 
@@ -59,39 +59,39 @@ msgstr "Kiểu gõ"
 msgid "Key"
 msgstr "Phím"
 
-#: src/bambooconfig.h:78 src/bamboo.cpp:293
+#: src/bambooconfig.h:78 src/bamboo.cpp:296
 msgid "Macro"
 msgstr "Gõ tắt"
 
-#: src/bamboo.cpp:449
+#: src/bamboo.cpp:453
 msgid "Macro Disabled"
 msgstr "Gõ tắt bị tắt"
 
-#: src/bamboo.cpp:448
+#: src/bamboo.cpp:452
 msgid "Macro Enabled"
 msgstr "Gõ tắt đang mở"
 
 #: src/bambooconfig.h:110
 msgid "Output Charset"
-msgstr "Bộ ký tự Đầu ra"
+msgstr "Bảng Mã"
 
-#: src/bamboo.cpp:252
+#: src/bamboo.cpp:255
 msgid "Output charset"
-msgstr "Bộ ký tự đầu ra"
+msgstr "Bảng mã"
 
 #: src/bambooconfig.h:102
 msgid "Restore Key Stroke"
 msgstr "Khôi phục phím bấm"
 
-#: src/bamboo.cpp:440
+#: src/bamboo.cpp:444
 msgid "Spell Check Disabled"
 msgstr "Kiểm tra chính tả bị tắt"
 
-#: src/bamboo.cpp:439
+#: src/bamboo.cpp:443
 msgid "Spell Check Enabled"
 msgstr "Kiểm tra chính tả đang mở"
 
-#: src/bamboo.cpp:281
+#: src/bamboo.cpp:284
 msgid "Spell check"
 msgstr "Kiểm tra chính tả"
 
