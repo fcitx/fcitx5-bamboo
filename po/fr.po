@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-06-06 20:24+0000\n"
+"POT-Creation-Date: 2022-11-18 20:25+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: roxfr <roxfr@outlook.fr>, 2022\n"
 "Language-Team: French (https://www.transifex.com/fcitx/teams/12005/fr/)\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
 "1000000 == 0 ? 1 : 2;\n"
 
-#: src/bambooconfig.h:119
+#: src/bambooconfig.h:121
 msgid "Allow type with more freedom"
 msgstr "Autoriser le type avec plus de liberté"
 
-#: src/bambooconfig.h:114
+#: src/bambooconfig.h:116
 msgid "Auto restore keys with invalid words"
 msgstr "Clés de restauration automatique avec des mots invalides"
 
@@ -36,71 +36,75 @@ msgstr "Bamboo"
 msgid "Bamboo Wrapper For Fcitx"
 msgstr "Bamboo Wrapper pour Fcitx"
 
-#: src/bambooconfig.h:111
+#: src/bambooconfig.h:113
 msgid "Capitalize Macro"
 msgstr "Majuscule macro"
 
-#: src/bambooconfig.h:87 src/bambooconfig.h:121
+#: src/bambooconfig.h:89 src/bambooconfig.h:124
 msgid "Custom Keymap"
 msgstr "Keymap personnalisé"
 
-#: src/bambooconfig.h:110
+#: src/bambooconfig.h:112
 msgid "Enable Macro"
 msgstr "Activer macro"
 
-#: src/bambooconfig.h:109
+#: src/bambooconfig.h:111
 msgid "Enable spell check"
 msgstr "Activer la vérification orthographique"
 
-#: src/bambooconfig.h:105 src/bamboo.cpp:225
+#: src/bambooconfig.h:107 src/bamboo.cpp:229
 msgid "Input Method"
 msgstr "Méthode de saisie"
 
-#: src/bambooconfig.h:68
+#: src/bambooconfig.h:70
 msgid "Key"
 msgstr "Clé"
 
-#: src/bambooconfig.h:76 src/bamboo.cpp:293
+#: src/bambooconfig.h:78 src/bamboo.cpp:297
 msgid "Macro"
 msgstr "Macro"
 
-#: src/bamboo.cpp:449
+#: src/bamboo.cpp:454
 msgid "Macro Disabled"
 msgstr "Macro désactivée"
 
-#: src/bamboo.cpp:448
+#: src/bamboo.cpp:453
 msgid "Macro Enabled"
 msgstr "Macro activée"
 
-#: src/bambooconfig.h:108
+#: src/bambooconfig.h:110
 msgid "Output Charset"
 msgstr "Jeu de caractères de sortie"
 
-#: src/bamboo.cpp:252
+#: src/bamboo.cpp:256
 msgid "Output charset"
 msgstr "Jeu de caractères de sortie"
 
-#: src/bambooconfig.h:100
+#: src/bambooconfig.h:102
 msgid "Restore Key Stroke"
 msgstr "Restaurer la frappe"
 
-#: src/bamboo.cpp:440
+#: src/bamboo.cpp:445
 msgid "Spell Check Disabled"
 msgstr "Vérification orthographique désactivée"
 
-#: src/bamboo.cpp:439
+#: src/bamboo.cpp:444
 msgid "Spell Check Enabled"
 msgstr "Vérification orthographique activée"
 
-#: src/bamboo.cpp:281
+#: src/bamboo.cpp:285
 msgid "Spell check"
 msgstr "Vérification orthographique"
 
-#: src/bambooconfig.h:117
+#: src/bambooconfig.h:123
+msgid "Underline the preedit text"
+msgstr ""
+
+#: src/bambooconfig.h:119
 msgid "Use oà, _uý (instead of òa, úy)"
 msgstr "Utiliser oà, _uý (au lieu de òa, úy)"
 
-#: src/bambooconfig.h:69
+#: src/bambooconfig.h:71
 msgid "Value"
 msgstr "Valeur"
 

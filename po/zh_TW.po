@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-06-06 20:24+0000\n"
+"POT-Creation-Date: 2022-11-18 20:25+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/fcitx/teams/12005/"
@@ -20,11 +20,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/bambooconfig.h:119
+#: src/bambooconfig.h:121
 msgid "Allow type with more freedom"
 msgstr "允許更自由的輸入"
 
-#: src/bambooconfig.h:114
+#: src/bambooconfig.h:116
 msgid "Auto restore keys with invalid words"
 msgstr "自動還原包含無效單字的鍵"
 
@@ -36,71 +36,75 @@ msgstr "Bamboo"
 msgid "Bamboo Wrapper For Fcitx"
 msgstr "Fcitx 的 Bamboo 封裝"
 
-#: src/bambooconfig.h:111
+#: src/bambooconfig.h:113
 msgid "Capitalize Macro"
 msgstr "大寫化巨集"
 
-#: src/bambooconfig.h:87 src/bambooconfig.h:121
+#: src/bambooconfig.h:89 src/bambooconfig.h:124
 msgid "Custom Keymap"
 msgstr "自訂按鍵對映"
 
-#: src/bambooconfig.h:110
+#: src/bambooconfig.h:112
 msgid "Enable Macro"
 msgstr "啟用巨集"
 
-#: src/bambooconfig.h:109
+#: src/bambooconfig.h:111
 msgid "Enable spell check"
 msgstr "啟用拼字檢查"
 
-#: src/bambooconfig.h:105 src/bamboo.cpp:225
+#: src/bambooconfig.h:107 src/bamboo.cpp:229
 msgid "Input Method"
 msgstr "輸入法"
 
-#: src/bambooconfig.h:68
+#: src/bambooconfig.h:70
 msgid "Key"
 msgstr "鍵"
 
-#: src/bambooconfig.h:76 src/bamboo.cpp:293
+#: src/bambooconfig.h:78 src/bamboo.cpp:297
 msgid "Macro"
 msgstr "巨集"
 
-#: src/bamboo.cpp:449
+#: src/bamboo.cpp:454
 msgid "Macro Disabled"
 msgstr "巨集已停用"
 
-#: src/bamboo.cpp:448
+#: src/bamboo.cpp:453
 msgid "Macro Enabled"
 msgstr "巨集已啟用"
 
-#: src/bambooconfig.h:108
+#: src/bambooconfig.h:110
 msgid "Output Charset"
 msgstr "輸出字元集"
 
-#: src/bamboo.cpp:252
+#: src/bamboo.cpp:256
 msgid "Output charset"
 msgstr "輸出字元集"
 
-#: src/bambooconfig.h:100
+#: src/bambooconfig.h:102
 msgid "Restore Key Stroke"
 msgstr "還原按鍵序列"
 
-#: src/bamboo.cpp:440
+#: src/bamboo.cpp:445
 msgid "Spell Check Disabled"
 msgstr "拼字檢查已停用"
 
-#: src/bamboo.cpp:439
+#: src/bamboo.cpp:444
 msgid "Spell Check Enabled"
 msgstr "拼字檢查已啟用"
 
-#: src/bamboo.cpp:281
+#: src/bamboo.cpp:285
 msgid "Spell check"
 msgstr "拼字檢查"
 
-#: src/bambooconfig.h:117
+#: src/bambooconfig.h:123
+msgid "Underline the preedit text"
+msgstr ""
+
+#: src/bambooconfig.h:119
 msgid "Use oà, _uý (instead of òa, úy)"
 msgstr "使用 oà, _uý（而非 òa, úy）"
 
-#: src/bambooconfig.h:69
+#: src/bambooconfig.h:71
 msgid "Value"
 msgstr "值"
 
