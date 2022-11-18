@@ -139,7 +139,8 @@ public:
             std::string_view preeditView = preedit.get();
             Text text;
             TextFormatFlags format;
-            if (ic_->capabilityFlags().test(CapabilityFlag::Preedit)) {
+            if (ic_->capabilityFlags().test(CapabilityFlag::Preedit) &&
+                *engine_->config().displayUnderline) {
                 format = TextFormatFlag::Underline;
             }
             if (utf8::validate(preeditView)) {
