@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-11-18 20:25+0000\n"
+"POT-Creation-Date: 2022-11-19 20:25+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: Dmitry <dmitrydmitry761@gmail.com>, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/fcitx/teams/12005/ru/)\n"
@@ -99,7 +99,7 @@ msgstr "Проверка орфографии"
 
 #: src/bambooconfig.h:123
 msgid "Underline the preedit text"
-msgstr ""
+msgstr "Подчеркнуть предварительно отредактированный текст"
 
 #: src/bambooconfig.h:119
 msgid "Use oà, _uý (instead of òa, úy)"
