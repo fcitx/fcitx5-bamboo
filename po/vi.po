@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fcitx5-bamboo\n"
 "Report-Msgid-Bugs-To: fcitx-dev@googlegroups.com\n"
-"POT-Creation-Date: 2022-11-18 20:25+0000\n"
+"POT-Creation-Date: 2022-11-21 20:25+0000\n"
 "PO-Revision-Date: 2022-06-04 06:04+0000\n"
 "Last-Translator: Zen Fas, 2022\n"
 "Language-Team: Vietnamese (https://www.transifex.com/fcitx/teams/12005/vi/)\n"
@@ -97,7 +97,7 @@ msgstr "Kiểm tra chính tả"
 
 #: src/bambooconfig.h:123
 msgid "Underline the preedit text"
-msgstr ""
+msgstr "Gạch chân từ đang viết"
 
 #: src/bambooconfig.h:119
 msgid "Use oà, _uý (instead of òa, úy)"
