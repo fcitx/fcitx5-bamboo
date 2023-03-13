@@ -389,6 +389,17 @@ void BambooEngine::activate(const InputMethodEntry &entry,
     statusArea.addAction(StatusGroup::InputMethod, macroAction_.get());
 }
 
+void BambooEngine::deactivate(const InputMethodEntry &entry,
+                              InputContextEvent &event) {
+    FCITX_UNUSED(entry);
+    auto state = event.inputContext()->propertyFor(&factory_);
+    if (event.type() != EventType::InputContextFocusOut) {
+        state->commitBuffer();
+    } else {
+        state->reset();
+    }
+}
+
 void BambooEngine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
     FCITX_UNUSED(entry);
     auto state = keyEvent.inputContext()->propertyFor(&factory_);
@@ -400,12 +411,7 @@ void BambooEngine::reset(const InputMethodEntry &entry,
                          InputContextEvent &event) {
     FCITX_UNUSED(entry);
     auto state = event.inputContext()->propertyFor(&factory_);
-
-    if (event.type() != EventType::InputContextFocusOut) {
-        state->commitBuffer();
-    } else {
-        state->reset();
-    }
+    state->reset();
 }
 
 void BambooEngine::refreshEngine() {

@@ -8,7 +8,7 @@ include(FeatureSummary)
 include(GNUInstallDirs)
 include(ECMUninstallTarget)
 
-find_package(Fcitx5Core REQUIRED)
+find_package(Fcitx5Core 5.0.22 REQUIRED)
 find_package(Fcitx5Module REQUIRED COMPONENTS TestFrontend)
 find_package(Gettext REQUIRED)
 find_package(Pthread REQUIRED)

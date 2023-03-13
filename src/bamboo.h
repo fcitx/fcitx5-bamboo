@@ -63,6 +63,8 @@ public:
 
     void activate(const InputMethodEntry &entry,
                   InputContextEvent &event) override;
+    void deactivate(const fcitx::InputMethodEntry &entry,
+                    fcitx::InputContextEvent &event) override;
     void keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) override;
     void reset(const InputMethodEntry &entry,
                InputContextEvent &event) override;
