@@ -9,15 +9,24 @@
 
 #include "bamboo-core.h"
 #include "bambooconfig.h"
+#include <cstdint>
 #include <fcitx-config/iniparser.h>
+#include <fcitx-config/rawconfig.h>
 #include <fcitx-utils/i18n.h>
+#include <fcitx-utils/signals.h>
 #include <fcitx/action.h>
 #include <fcitx/addonfactory.h>
+#include <fcitx/addoninstance.h>
 #include <fcitx/addonmanager.h>
+#include <fcitx/event.h>
 #include <fcitx/inputcontextproperty.h>
 #include <fcitx/inputmethodengine.h>
 #include <fcitx/instance.h>
+#include <memory>
+#include <optional>
 #include <string>
+#include <unordered_map>
+#include <vector>
 
 namespace fcitx {
 

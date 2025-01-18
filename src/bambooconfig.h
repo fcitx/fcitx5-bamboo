@@ -7,10 +7,16 @@
 #ifndef _FCITX5_BAMBOO_BAMBOOCONFIG_H_
 #define _FCITX5_BAMBOO_BAMBOOCONFIG_H_
 
+#include <algorithm>
+#include <cstddef>
 #include <fcitx-config/configuration.h>
 #include <fcitx-config/option.h>
+#include <fcitx-config/rawconfig.h>
 #include <fcitx-utils/i18n.h>
 #include <fcitx-utils/stringutils.h>
+#include <string>
+#include <utility>
+#include <vector>
 
 namespace fcitx {
 
@@ -60,7 +66,7 @@ struct InputMethodConstrain {
         }
         return std::find(list.begin(), list.end(), name) != list.end();
     }
-    void dumpDescription(RawConfig &) const {}
+    void dumpDescription(RawConfig & /*unused*/) const {}
 
 protected:
     const InputMethodOption *option_;

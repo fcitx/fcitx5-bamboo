@@ -6,22 +6,43 @@
  */
 
 #include "bamboo.h"
+#include "bambooconfig.h"
+#include <algorithm>
+#include <cstdint>
+#include <cstdlib>
 #include <fcitx-config/iniparser.h>
+#include <fcitx-config/rawconfig.h>
+#include <fcitx-utils/capabilityflags.h>
 #include <fcitx-utils/charutils.h>
+#include <fcitx-utils/i18n.h>
 #include <fcitx-utils/keysymgen.h>
+#include <fcitx-utils/log.h>
+#include <fcitx-utils/macros.h>
+#include <fcitx-utils/misc.h>
 #include <fcitx-utils/standardpath.h>
+#include <fcitx-utils/stringutils.h>
 #include <fcitx-utils/textformatflags.h>
 #include <fcitx-utils/utf8.h>
+#include <fcitx/action.h>
+#include <fcitx/addoninstance.h>
+#include <fcitx/event.h>
 #include <fcitx/inputcontext.h>
 #include <fcitx/inputcontextmanager.h>
+#include <fcitx/inputmethodentry.h>
 #include <fcitx/inputpanel.h>
 #include <fcitx/menu.h>
 #include <fcitx/statusarea.h>
+#include <fcitx/text.h>
 #include <fcitx/userinterface.h>
 #include <fcitx/userinterfacemanager.h>
 #include <fcntl.h>
+#include <memory>
 #include <optional>
 #include <stdexcept>
+#include <string>
+#include <string_view>
+#include <utility>
+#include <vector>
 
 namespace fcitx {
 
@@ -31,6 +52,8 @@ constexpr std::string_view MacroPrefix = "macro/";
 constexpr std::string_view InputMethodActionPrefix = "bamboo-input-method-";
 constexpr std::string_view CharsetActionPrefix = "bamboo-charset-";
 const std::string CustomKeymapFile = "conf/bamboo-custom-keymap.conf";
+
+FCITX_DEFINE_LOG_CATEGORY(bamboo, "bamboo");
 
 std::string macroFile(std::string_view imName) {
     return stringutils::concat("conf/bamboo-macro-", imName, ".conf");
@@ -48,9 +71,18 @@ uintptr_t newMacroTable(const BambooMacroTable &macroTable) {
     return NewMacroTable(charArray.data());
 }
 
+std::vector<std::string> convertToStringList(char **array) {
+    std::vector<std::string> result;
+    for (int i = 0; array[i]; i++) {
+        result.push_back(array[i]);
+        free(array[i]);
+    }
+    free(array);
+    return result;
+}
+
 } // namespace
 
-FCITX_DEFINE_LOG_CATEGORY(bamboo, "bamboo");
 #define FCITX_BAMBOO_DEBUG() FCITX_LOGC(bamboo, Debug)
 
 class BambooState final : public InputContextProperty {
@@ -117,7 +149,8 @@ public:
 
         if (keyEvent.key().checkKeyList(*engine_->config().restoreKeyStroke)) {
             EngineSetRestoreKeyStroke(bambooEngine_.handle());
-            return keyEvent.filterAndAccept();
+            keyEvent.filterAndAccept();
+            return;
         }
 
         if (EngineProcessKeyEvent(bambooEngine_.handle(),
@@ -189,16 +222,6 @@ private:
     CGoObject bambooEngine_;
 };
 
-std::vector<std::string> convertToStringList(char **array) {
-    std::vector<std::string> result;
-    for (int i = 0; array[i]; i++) {
-        result.push_back(array[i]);
-        free(array[i]);
-    }
-    free(array);
-    return result;
-}
-
 BambooEngine::BambooEngine(Instance *instance)
     : instance_(instance), factory_([this](InputContext &ic) {
           return new BambooState(this, &ic);
@@ -233,7 +256,7 @@ BambooEngine::BambooEngine(Instance *instance)
     inputMethodAction_->setMenu(inputMethodMenu_.get());
     for (const auto &imName : imNames_) {
         inputMethodSubAction_.emplace_back(std::make_unique<SimpleAction>());
-        auto action = inputMethodSubAction_.back().get();
+        auto *action = inputMethodSubAction_.back().get();
         action->setShortText(imName);
         action->setCheckable(true);
         uiManager.registerAction(
@@ -262,7 +285,7 @@ BambooEngine::BambooEngine(Instance *instance)
     auto charsets = convertToStringList(GetCharsetNames());
     for (const auto &charset : charsets) {
         charsetSubAction_.emplace_back(std::make_unique<SimpleAction>());
-        auto action = charsetSubAction_.back().get();
+        auto *action = charsetSubAction_.back().get();
         action->setShortText(charset);
         action->setCheckable(true);
         connections_.emplace_back(action->connect<SimpleAction::Activated>(
@@ -324,13 +347,13 @@ void BambooEngine::reloadConfig() {
 const Configuration *BambooEngine::getSubConfig(const std::string &path) const {
     if (path == "custom_keymap") {
         return &customKeymap_;
-    } else if (stringutils::startsWith(path, MacroPrefix)) {
+    }
+    if (stringutils::startsWith(path, MacroPrefix)) {
         const auto imName = path.substr(MacroPrefix.size());
         if (auto iter = macroTables_.find(imName); iter != macroTables_.end()) {
             return &iter->second;
-        } else {
-            return nullptr;
         }
+        return nullptr;
     }
     return nullptr;
 }
@@ -367,8 +390,8 @@ void BambooEngine::setSubConfig(const std::string &path,
     }
 }
 
-std::string BambooEngine::subMode(const fcitx::InputMethodEntry &,
-                                  fcitx::InputContext &) {
+std::string BambooEngine::subMode(const fcitx::InputMethodEntry & /*entry*/,
+                                  fcitx::InputContext & /*inputContext*/) {
     return *config_.inputMethod;
 }
 
@@ -392,7 +415,7 @@ void BambooEngine::activate(const InputMethodEntry &entry,
 void BambooEngine::deactivate(const InputMethodEntry &entry,
                               InputContextEvent &event) {
     FCITX_UNUSED(entry);
-    auto state = event.inputContext()->propertyFor(&factory_);
+    auto *state = event.inputContext()->propertyFor(&factory_);
     if (event.type() != EventType::InputContextFocusOut) {
         state->commitBuffer();
     } else {
@@ -402,7 +425,7 @@ void BambooEngine::deactivate(const InputMethodEntry &entry,
 
 void BambooEngine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
     FCITX_UNUSED(entry);
-    auto state = keyEvent.inputContext()->propertyFor(&factory_);
+    auto *state = keyEvent.inputContext()->propertyFor(&factory_);
 
     state->keyEvent(keyEvent);
 }
@@ -410,7 +433,7 @@ void BambooEngine::keyEvent(const InputMethodEntry &entry, KeyEvent &keyEvent) {
 void BambooEngine::reset(const InputMethodEntry &entry,
                          InputContextEvent &event) {
     FCITX_UNUSED(entry);
-    auto state = event.inputContext()->propertyFor(&factory_);
+    auto *state = event.inputContext()->propertyFor(&factory_);
     state->reset();
 }
 
@@ -421,7 +444,7 @@ void BambooEngine::refreshEngine() {
     }
 
     instance_->inputContextManager().foreach([this](InputContext *ic) {
-        auto state = ic->propertyFor(&factory_);
+        auto *state = ic->propertyFor(&factory_);
         state->setEngine();
         if (ic->hasFocus()) {
             state->reset();
@@ -435,7 +458,7 @@ void BambooEngine::refreshOption() {
         return;
     }
     instance_->inputContextManager().foreach([this](InputContext *ic) {
-        auto state = ic->propertyFor(&factory_);
+        auto *state = ic->propertyFor(&factory_);
         state->setOption();
         if (ic->hasFocus()) {
             state->reset();
@@ -487,4 +510,4 @@ void BambooEngine::updateCharsetAction(InputContext *ic) {
 
 } // namespace fcitx
 
-FCITX_ADDON_FACTORY(fcitx::BambooFactory)
+FCITX_ADDON_FACTORY_V2(bamboo, fcitx::BambooFactory)
