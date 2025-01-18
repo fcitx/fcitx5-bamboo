@@ -15,7 +15,7 @@
 #include <fcitx-utils/capabilityflags.h>
 #include <fcitx-utils/charutils.h>
 #include <fcitx-utils/i18n.h>
-#include <fcitx-utils/keysymgen.h>
+#include <fcitx-utils/keysym.h>
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/macros.h>
 #include <fcitx-utils/misc.h>
