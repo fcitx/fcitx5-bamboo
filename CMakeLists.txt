@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(fcitx5-bamboo VERSION 1.0.6)
+project(fcitx5-bamboo VERSION 1.0.7)
 
 set(REQUIRED_FCITX_VERSION 5.1.12)
 find_package(ECM 1.0.0 REQUIRED)
