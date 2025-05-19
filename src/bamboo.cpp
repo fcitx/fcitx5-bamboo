@@ -19,7 +19,7 @@
 #include <fcitx-utils/log.h>
 #include <fcitx-utils/macros.h>
 #include <fcitx-utils/misc.h>
-#include <fcitx-utils/standardpath.h>
+#include <fcitx-utils/standardpaths.h>
 #include <fcitx-utils/stringutils.h>
 #include <fcitx-utils/textformatflags.h>
 #include <fcitx-utils/utf8.h>
@@ -239,8 +239,8 @@ BambooEngine::BambooEngine(Instance *instance)
     FCITX_BAMBOO_DEBUG() << "Supported input methods: " << imNames_;
     config_.inputMethod.annotation().setList(imNames_);
 
-    auto fd = StandardPath::global().open(
-        StandardPath::Type::PkgData, "bamboo/vietnamese.cm.dict", O_RDONLY);
+    auto fd = StandardPaths::global().open(StandardPathsType::PkgData,
+                                           "bamboo/vietnamese.cm.dict");
     if (!fd.isValid()) {
         throw std::runtime_error("Failed to load dictionary");
     }
