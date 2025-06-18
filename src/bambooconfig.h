@@ -115,7 +115,7 @@ FCITX_CONFIGURATION(
     OptionWithAnnotation<std::string, StringListAnnotation> outputCharset{
         this, "OutputCharset", _("Output Charset"), "Unicode"};
     Option<bool> spellCheck{this, "SpellCheck", _("Enable spell check"), true};
-    Option<bool> macro{this, "Macro", _("Enable Macro"), true};
+    Option<bool> macro{this, "Macro", _("Enable Macro"), false};
     Option<bool> capitalizeMacro{this, "CapitalizeMacro", _("Capitalize Macro"),
                                  true};
     Option<bool> autoNonVnRestore{this, "AutoNonVnRestore",
