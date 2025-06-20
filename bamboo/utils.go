@@ -10,6 +10,7 @@ package main
 
 import (
 	"bamboo-core"
+	"strings"
 	"unicode"
 )
 
@@ -39,6 +40,19 @@ func determineMacroCase(str string) uint8 {
 func inKeyList(list []rune, key rune) bool {
 	for _, s := range list {
 		if s == key {
+			return true
+		}
+	}
+	return false
+}
+
+// Backport missing function in bamboo-core
+func (e *MacroTable) HasPrefix(key string) bool {
+	if e.mTable[key] != "" {
+		return true
+	}
+	for k := range e.mTable {
+		if strings.HasPrefix(k, key) {
 			return true
 		}
 	}

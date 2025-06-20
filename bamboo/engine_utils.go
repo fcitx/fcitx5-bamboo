@@ -55,8 +55,13 @@ func isValidState(state uint32) bool {
 	return true
 }
 
+func (e *FcitxBambooEngine) isPrintableKey(state, keyVal uint32) bool {
+	return isValidState(state) && e.isValidKeyVal(keyVal)
+}
+
 func (e *FcitxBambooEngine) getCommitText(keyVal, state uint32) (string, bool) {
 	var keyRune = rune(keyVal)
+	isPrintableKey := e.isPrintableKey(state, keyVal)
 	oldText := e.getPreeditString()
 	// restore key strokes by pressing Shift + Space
 	if e.shouldRestoreKeyStrokes {
@@ -64,7 +69,11 @@ func (e *FcitxBambooEngine) getCommitText(keyVal, state uint32) (string, bool) {
 		e.preeditor.RestoreLastWord(!bamboo.HasAnyVietnameseRune(oldText))
 		return e.getPreeditString(), false
 	}
-	if e.preeditor.CanProcessKey(keyRune) {
+	var keyS string
+	if isPrintableKey {
+		keyS = string(keyRune)
+	}
+	if isPrintableKey && e.preeditor.CanProcessKey(keyRune) {
 		if state&FcitxLockMask != 0 {
 			keyRune = e.toUpper(keyRune)
 		}
@@ -81,7 +90,7 @@ func (e *FcitxBambooEngine) getCommitText(keyVal, state uint32) (string, bool) {
 				var ret = e.getPreeditString()
 				var lastRune = rune(ret[len(ret)-1])
 				var isWordBreakRune = bamboo.IsWordBreakSymbol(lastRune)
-				// TODO: THIS IS HACKING
+				// TODO: THIS IS A HACK
 				if isWordBreakRune {
 					e.preeditor.RemoveLastChar(false)
 					e.preeditor.ProcessKey(' ', bamboo.EnglishMode)
@@ -104,28 +113,46 @@ func (e *FcitxBambooEngine) getCommitText(keyVal, state uint32) (string, bool) {
 		} else {
 			return e.getPreeditString(), false
 		}
-	} else if bamboo.IsWordBreakSymbol(keyRune) {
+	} else if e.macroEnabled {
 		// macro processing
-		if e.macroEnabled {
-			var keyS = string(keyRune)
-			if keyVal == FcitxSpace && e.macroTable.HasKey(oldText) {
-				e.preeditor.Reset()
-				return e.expandMacro(oldText) + keyS, keyVal == FcitxSpace
-			} else {
-				e.preeditor.ProcessKey(keyRune, e.getBambooInputMode())
-				return oldText + keyS, keyVal == FcitxSpace
-			}
-		}
-		if bamboo.HasAnyVietnameseRune(oldText) && e.mustFallbackToEnglish() {
-			e.preeditor.RestoreLastWord(false)
-			newText := e.preeditor.GetProcessedString(bamboo.EnglishMode) + string(keyRune)
+		if isPrintableKey && e.macroTable.HasPrefix(oldText+keyS) {
 			e.preeditor.ProcessKey(keyRune, bamboo.EnglishMode)
-			return newText, true
+			return oldText + keyS, false
 		}
-		e.preeditor.ProcessKey(keyRune, bamboo.EnglishMode)
-		return oldText + string(keyRune), true
+		if e.macroTable.HasKey(oldText) {
+			if isPrintableKey {
+				return e.expandMacro(oldText) + keyS, true
+			}
+			return e.expandMacro(oldText), true
+		}
 	}
-	return "", true
+	return e.handleNonVnWord(keyVal, state), true
+}
+
+func (e *FcitxBambooEngine) handleNonVnWord(keyVal, state uint32) string {
+	var (
+		keyS           string
+		keyRune        = rune(keyVal)
+		isPrintableKey = e.isPrintableKey(state, keyVal)
+		oldText        = e.getPreeditString()
+	)
+	if isPrintableKey {
+		keyS = string(keyRune)
+	}
+	if bamboo.HasAnyVietnameseRune(oldText) && e.mustFallbackToEnglish() {
+		e.preeditor.RestoreLastWord(false)
+		newText := e.preeditor.GetProcessedString(bamboo.PunctuationMode|bamboo.EnglishMode) + keyS
+		if isPrintableKey {
+			e.preeditor.ProcessKey(keyRune, bamboo.EnglishMode)
+		}
+		return newText
+	}
+	if isPrintableKey {
+		e.preeditor.ProcessKey(keyRune, bamboo.EnglishMode)
+		return oldText + keyS
+	}
+	// Ctrl + A is treasted as a WBS
+	return oldText + keyS
 }
 
 func (e *FcitxBambooEngine) getMacroText() (bool, string) {
@@ -137,4 +164,15 @@ func (e *FcitxBambooEngine) getMacroText() (bool, string) {
 		return true, e.expandMacro(text)
 	}
 	return false, ""
+}
+
+func (e *FcitxBambooEngine) isValidKeyVal(keyVal uint32) bool {
+	var keyRune = rune(keyVal)
+	if keyVal == FcitxBackSpace || bamboo.IsWordBreakSymbol(keyRune) {
+		return true
+	}
+	if ok, _ := e.getMacroText(); ok && keyVal == FcitxTab {
+		return true
+	}
+	return e.preeditor.CanProcessKey(keyRune)
 }

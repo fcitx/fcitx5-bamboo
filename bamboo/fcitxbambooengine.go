@@ -57,13 +57,10 @@ func (e *FcitxBambooEngine) preeditProcessKeyEvent(keyVal uint32, state uint32) 
 	var oldText = e.getPreeditString()
 	defer e.updateLastKeyWithShift(keyVal, state)
 
-	// workaround for chrome's address bar and Google SpreadSheets
 	if !e.shouldRestoreKeyStrokes {
-		if !isValidState(state) || !e.canProcessKey(keyVal) ||
-			(!e.macroEnabled && rawKeyLen == 0 && !e.preeditor.CanProcessKey(keyRune)) {
-			if rawKeyLen > 0 {
-				e.commitPreeditAndReset(e.getPreeditString())
-			}
+		if !e.preeditor.CanProcessKey(keyRune) && rawKeyLen == 0 && !e.macroEnabled {
+			// don't process special characters if rawKeyLen == 0,
+			// workaround for Chrome's address bar and Google SpreadSheets
 			return false
 		}
 	}
@@ -92,12 +89,13 @@ func (e *FcitxBambooEngine) preeditProcessKeyEvent(keyVal uint32, state uint32) 
 	}
 
 	newText, isWordBreakRune := e.getCommitText(keyVal, state)
+	isPrintableKey := e.isPrintableKey(state, keyVal)
 	if isWordBreakRune {
 		e.commitPreeditAndReset(newText)
-		return true
+		return isPrintableKey
 	}
 	e.updatePreedit(newText)
-	return true
+	return isPrintableKey
 }
 
 func (e *FcitxBambooEngine) expandMacro(str string) string {
@@ -203,15 +201,4 @@ func (e *FcitxBambooEngine) commitPreeditAndReset(s string) {
 	e.commitText = s
 	e.preeditText = ""
 	e.preeditor.Reset()
-}
-
-func (e *FcitxBambooEngine) canProcessKey(keyVal uint32) bool {
-	var keyRune = rune(keyVal)
-	if keyVal == FcitxSpace || keyVal == FcitxBackSpace || bamboo.IsWordBreakSymbol(keyRune) {
-		return true
-	}
-	if ok, _ := e.getMacroText(); ok && keyVal == FcitxTab {
-		return true
-	}
-	return e.preeditor.CanProcessKey(keyRune)
 }
