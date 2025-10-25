@@ -14,6 +14,7 @@
   <url type="vcs-browser">https://github.com/fcitx/fcitx5-bamboo</url>
   <project_group>Fcitx</project_group>
   <releases>
+    <release version="1.0.9" date="2025-10-16"/>
     <release version="1.0.8" date="2025-06-15"/>
     <release version="1.0.7" date="2025-01-22"/>
     <release version="1.0.6" date="2024-05-30"/>
