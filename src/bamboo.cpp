@@ -348,7 +348,7 @@ const Configuration *BambooEngine::getSubConfig(const std::string &path) const {
     if (path == "custom_keymap") {
         return &customKeymap_;
     }
-    if (stringutils::startsWith(path, MacroPrefix)) {
+    if (path.starts_with(MacroPrefix)) {
         const auto imName = path.substr(MacroPrefix.size());
         if (auto iter = macroTables_.find(imName); iter != macroTables_.end()) {
             return &iter->second;
@@ -379,7 +379,7 @@ void BambooEngine::setSubConfig(const std::string &path,
         customKeymap_.load(config, true);
         safeSaveAsIni(customKeymap_, CustomKeymapFile);
         refreshEngine();
-    } else if (stringutils::startsWith(path, MacroPrefix)) {
+    } else if (path.starts_with(MacroPrefix)) {
         const auto imName = path.substr(MacroPrefix.size());
         if (auto iter = macroTables_.find(imName); iter != macroTables_.end()) {
             iter->second.load(config, true);
