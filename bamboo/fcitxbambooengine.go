@@ -13,19 +13,18 @@ import (
 )
 
 type FcitxBambooEngine struct {
-	preeditor               bamboo.IEngine
-	macroTable              *MacroTable
-	dictionary              map[string]bool
-	autoNonVnRestore        bool
-	ddFreeStyle             bool
-	macroEnabled            bool
-	autoCapitalizeMacro     bool
-	lastKeyWithShift        bool
-	spellCheckWithDicts     bool
-	preeditText             string
-	commitText              string
-	shouldRestoreKeyStrokes bool
-	outputCharset           string
+	preeditor           bamboo.IEngine
+	macroTable          *MacroTable
+	dictionary          map[string]bool
+	autoNonVnRestore    bool
+	ddFreeStyle         bool
+	macroEnabled        bool
+	autoCapitalizeMacro bool
+	lastKeyWithShift    bool
+	spellCheckWithDicts bool
+	preeditText         string
+	commitText          string
+	outputCharset       string
 }
 
 const (
@@ -33,17 +32,13 @@ const (
 	FcitxLockMask    = 1 << 1
 	FcitxControlMask = 1 << 2
 	FcitxMod1Mask    = 1 << 3
-
-	/* The next few modifiers are used by XKB so we skip to the end.
-	 * Bits 15 - 23 are currently unused. Bit 29 is used internally.
-	 */
-
-	FcitxForwardMask = 1 << 25
-	FcitxIgnoredMask = FcitxForwardMask
-
-	FcitxSuperMask = 1 << 26
-	FcitxHyperMask = 1 << 27
-	FcitxMetaMask  = 1 << 28
+	FcitxHyperMask   = 1 << 5
+	FcitxSuperMask   = 1 << 6
+	FcitxMod5Mask    = 1 << 7
+	FcitxIgnoredMask = 1 << 25
+	FcitxSuper2Mask  = 1 << 26
+	FcitxHyper2Mask  = 1 << 27
+	FcitxMetaMask    = 1 << 28
 )
 const (
 	FcitxBackSpace = 0xff08
@@ -57,12 +52,10 @@ func (e *FcitxBambooEngine) preeditProcessKeyEvent(keyVal uint32, state uint32) 
 	var oldText = e.getPreeditString()
 	defer e.updateLastKeyWithShift(keyVal, state)
 
-	if !e.shouldRestoreKeyStrokes {
-		if !e.preeditor.CanProcessKey(keyRune) && rawKeyLen == 0 && !e.macroEnabled {
-			// don't process special characters if rawKeyLen == 0,
-			// workaround for Chrome's address bar and Google SpreadSheets
-			return false
-		}
+	if !e.preeditor.CanProcessKey(keyRune) && rawKeyLen == 0 && !e.macroEnabled {
+		// don't process special characters if rawKeyLen == 0,
+		// workaround for Chrome's address bar and Google SpreadSheets
+		return false
 	}
 
 	if keyVal == FcitxBackSpace {
@@ -96,6 +89,12 @@ func (e *FcitxBambooEngine) preeditProcessKeyEvent(keyVal uint32, state uint32) 
 	}
 	e.updatePreedit(newText)
 	return isPrintableKey
+}
+
+func (e *FcitxBambooEngine) restoreKeyStrokes() {
+	oldText := e.getPreeditString()
+	e.preeditor.RestoreLastWord(!bamboo.HasAnyVietnameseRune(oldText))
+	e.updatePreedit(e.getPreeditString())
 }
 
 func (e *FcitxBambooEngine) expandMacro(str string) string {
@@ -198,7 +197,7 @@ func (e *FcitxBambooEngine) getPreeditString() string {
 }
 
 func (e *FcitxBambooEngine) commitPreeditAndReset(s string) {
-	e.commitText = s
+	e.commitText = e.encodeText(s)
 	e.preeditText = ""
 	e.preeditor.Reset()
 }
