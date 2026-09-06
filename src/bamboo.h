@@ -26,6 +26,7 @@
 #include <optional>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 namespace fcitx {
@@ -33,24 +34,33 @@ namespace fcitx {
 class CGoObject {
 public:
     CGoObject(std::optional<uintptr_t> handle = std::nullopt)
-        : handle_(handle) {}
-    ~CGoObject() {
-        if (handle_) {
-            DeleteObject(*handle_);
+        : handle_(handle) {
+        if (handle_ && *handle_ == 0) {
+            handle_.reset();
         }
     }
+    ~CGoObject() { clear(); }
     CGoObject(const CGoObject &other) = delete;
-    CGoObject(CGoObject &&other) = default;
+    CGoObject(CGoObject &&other) noexcept
+        : handle_(std::exchange(other.handle_, std::nullopt)) {}
 
-    CGoObject &operator=(CGoObject &&other) = default;
+    CGoObject &operator=(CGoObject &&other) noexcept {
+        if (this != &other) {
+            clear();
+            handle_ = std::exchange(other.handle_, std::nullopt);
+        }
+        return *this;
+    }
     CGoObject &operator=(const CGoObject &other) = delete;
 
     void reset(std::optional<uintptr_t> handle = std::nullopt) {
         clear();
-        handle_ = handle;
+        if (handle && *handle != 0) {
+            handle_ = handle;
+        }
     }
 
-    uintptr_t handle() { return *handle_; }
+    uintptr_t handle() { return handle_.value(); }
 
     operator bool() const { return handle_.has_value(); }
 

@@ -150,12 +150,9 @@ public:
         if (keyEvent.key().checkKeyList(*engine_->config().restoreKeyStroke)) {
             EngineSetRestoreKeyStroke(bambooEngine_.handle());
             keyEvent.filterAndAccept();
-            return;
-        }
-
-        if (EngineProcessKeyEvent(bambooEngine_.handle(),
-                                  keyEvent.rawKey().sym(),
-                                  keyEvent.rawKey().states())) {
+        } else if (EngineProcessKeyEvent(bambooEngine_.handle(),
+                                         keyEvent.rawKey().sym(),
+                                         keyEvent.rawKey().states())) {
             keyEvent.filterAndAccept();
         }
 

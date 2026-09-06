@@ -49,6 +49,9 @@ func isValidState(state uint32) bool {
 		state&FcitxIgnoredMask != 0 ||
 		state&FcitxSuperMask != 0 ||
 		state&FcitxHyperMask != 0 ||
+		state&FcitxMod5Mask != 0 ||
+		state&FcitxSuper2Mask != 0 ||
+		state&FcitxHyper2Mask != 0 ||
 		state&FcitxMetaMask != 0 {
 		return false
 	}
@@ -63,12 +66,6 @@ func (e *FcitxBambooEngine) getCommitText(keyVal, state uint32) (string, bool) {
 	var keyRune = rune(keyVal)
 	isPrintableKey := e.isPrintableKey(state, keyVal)
 	oldText := e.getPreeditString()
-	// restore key strokes by pressing Shift + Space
-	if e.shouldRestoreKeyStrokes {
-		e.shouldRestoreKeyStrokes = false
-		e.preeditor.RestoreLastWord(!bamboo.HasAnyVietnameseRune(oldText))
-		return e.getPreeditString(), false
-	}
 	var keyS string
 	if isPrintableKey {
 		keyS = string(keyRune)

@@ -24,10 +24,10 @@ import (
 	*/
 	"C"
 	"bamboo-core"
-	"runtime/cgo"
-	"unsafe"
 	"os/signal"
+	"runtime/cgo"
 	"syscall"
+	"unsafe"
 )
 import (
 	"bufio"
@@ -55,9 +55,8 @@ func EngineSetRestoreKeyStroke(engine uintptr) {
 	if !ok {
 		return
 	}
-	bambooEngine.shouldRestoreKeyStrokes = true
+	bambooEngine.restoreKeyStrokes()
 }
-
 
 //export EnginePullPreedit
 func EnginePullPreedit(engine uintptr) *C.char {
@@ -130,19 +129,18 @@ func NewEngine(name *C.cchar, dictHandle uintptr, tableHandle uintptr) uintptr {
 	imName := C.GoString(name)
 
 	var engine = &FcitxBambooEngine{
-		preeditor:               bamboo.NewEngine(bamboo.ParseInputMethod(bamboo.InputMethodDefinitions, imName), bamboo.EstdFlags),
-		macroTable:              table,
-		dictionary:              *dict,
-		autoNonVnRestore:        true,
-		ddFreeStyle:             true,
-		macroEnabled:            false,
-		autoCapitalizeMacro:     false,
-		lastKeyWithShift:        false,
-		spellCheckWithDicts:     true,
-		preeditText:             "",
-		commitText:              "",
-		shouldRestoreKeyStrokes: false,
-		outputCharset:           "Unicode",
+		preeditor:           bamboo.NewEngine(bamboo.ParseInputMethod(bamboo.InputMethodDefinitions, imName), bamboo.EstdFlags),
+		macroTable:          table,
+		dictionary:          *dict,
+		autoNonVnRestore:    true,
+		ddFreeStyle:         true,
+		macroEnabled:        false,
+		autoCapitalizeMacro: false,
+		lastKeyWithShift:    false,
+		spellCheckWithDicts: true,
+		preeditText:         "",
+		commitText:          "",
+		outputCharset:       "Unicode",
 	}
 	return uintptr(cgo.NewHandle(engine))
 }
@@ -170,19 +168,18 @@ func NewCustomEngine(definition **C.char, dictHandle uintptr, tableHandle uintpt
 	}
 
 	var engine = &FcitxBambooEngine{
-		preeditor:               bamboo.NewEngine(bamboo.ParseInputMethod(definitions, "Custom"), bamboo.EstdFlags),
-		macroTable:              table,
-		dictionary:              *dict,
-		autoNonVnRestore:        true,
-		ddFreeStyle:             true,
-		macroEnabled:            false,
-		autoCapitalizeMacro:     false,
-		lastKeyWithShift:        false,
-		spellCheckWithDicts:     false,
-		preeditText:             "",
-		commitText:              "",
-		shouldRestoreKeyStrokes: false,
-		outputCharset:           "Unicode",
+		preeditor:           bamboo.NewEngine(bamboo.ParseInputMethod(definitions, "Custom"), bamboo.EstdFlags),
+		macroTable:          table,
+		dictionary:          *dict,
+		autoNonVnRestore:    true,
+		ddFreeStyle:         true,
+		macroEnabled:        false,
+		autoCapitalizeMacro: false,
+		lastKeyWithShift:    false,
+		spellCheckWithDicts: false,
+		preeditText:         "",
+		commitText:          "",
+		outputCharset:       "Unicode",
 	}
 
 	return uintptr(cgo.NewHandle(engine))
@@ -196,7 +193,10 @@ func NewMacroTable(definition **C.char) uintptr {
 	def := (*[1<<20 - 1]*C.char)(unsafe.Pointer(definition))
 	i := 0
 	for def[i] != nil {
-		table.mTable[C.GoString(def[i])] = C.GoString(def[i+1])
+		key := strings.ToLower(C.GoString(def[i]))
+		if key != "" {
+			table.mTable[key] = C.GoString(def[i+1])
+		}
 		i += 2
 	}
 

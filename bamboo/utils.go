@@ -22,6 +22,9 @@ const (
 
 func determineMacroCase(str string) uint8 {
 	var chars = []rune(str)
+	if len(chars) == 0 {
+		return VnCaseNoChange
+	}
 	if unicode.IsLower(chars[0]) {
 		return VnCaseAllSmall
 	} else {
@@ -48,6 +51,7 @@ func inKeyList(list []rune, key rune) bool {
 
 // Backport missing function in bamboo-core
 func (e *MacroTable) HasPrefix(key string) bool {
+	key = strings.ToLower(key)
 	if e.mTable[key] != "" {
 		return true
 	}
